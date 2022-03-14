@@ -8,7 +8,7 @@ class LoginController extends GetxController {
   TextEditingController passwordC = TextEditingController();
 
   FirebaseAuth auth = FirebaseAuth.instance;
-
+  User? user = FirebaseAuth.instance.currentUser;
   void login() async {
     if (emailC.text.isNotEmpty && passwordC.text.isNotEmpty) {
       try {
@@ -19,9 +19,8 @@ class LoginController extends GetxController {
           if (userCredential.user!.emailVerified == true) {
             Get.offAllNamed(Routes.HOME);
           } else {
-            Get.defaultDialog(
-                title: "Email not verified yet",
-                middleText: "Please verified your email address");
+            Get.offAllNamed(Routes.VERIFY);
+            await user?.sendEmailVerification();
           }
         }
       } on FirebaseAuthException catch (e) {
