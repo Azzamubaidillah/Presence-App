@@ -9,6 +9,9 @@ dependencies:
   cupertino_icons: ^1.0.2
   get: 4.6.1
   firebase_core: 1.13.1
+  firebase_auth: 3.3.10
+  cloud_firestore: 3.1.10
+  firebase_storage: 10.2.9
   flutter: 
     sdk: flutter
 
